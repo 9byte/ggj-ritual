@@ -20,7 +20,7 @@ public class UIStack : MonoBehaviour
     {
 
         textStack.text = "";
-        foreach (ExperimentalSpellHandler.SpellPress spell in spellHandler.spellStack)
+        foreach (ExperimentalSpellHandler.SpellPress spell in spellHandler.SpellStack)
         {
             textStack.text += spell.ToString() + "\n";
         }

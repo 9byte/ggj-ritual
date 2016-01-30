@@ -12,7 +12,10 @@ public class ExperimentalSpellHandler : MonoBehaviour {
 		SPELL_3
 	}
 
-	public List<SpellPress> spellStack = new List<SpellPress>();
+	private List<SpellPress> spellStack = new List<SpellPress>();
+    public List<SpellPress> SpellStack {
+        get { return spellStack; }
+    }
 
 	// Use this for initialization
 	void Start () 
