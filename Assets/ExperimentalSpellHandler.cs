@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class ExperimentalSpellHandler : MonoBehaviour {
 
@@ -11,11 +12,15 @@ public class ExperimentalSpellHandler : MonoBehaviour {
 		SPELL_3
 	}
 
+    private Text uiText;
+
 	private List<SpellPress> spellStack = new List<SpellPress>();
 
 	// Use this for initialization
 	void Start () {
-	
+        uiText = GameObject.Find("UIStackBody").GetComponent<Text>;
+        uiText.text = "wtf!";
+
 	}
 	
 	// Update is called once per frame
