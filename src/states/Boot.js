@@ -8,19 +8,23 @@ var Spellz;
 (function (Spellz) {
     var States;
     (function (States) {
-        var Menu = (function (_super) {
-            __extends(Menu, _super);
-            function Menu() {
+        var Boot = (function (_super) {
+            __extends(Boot, _super);
+            function Boot() {
                 _super.apply(this, arguments);
             }
-            Menu.prototype.preload = function () { };
-            Menu.prototype.create = function () { };
-            Menu.prototype.update = function () {
-                console.log('menu update');
+            Boot.prototype.preload = function () {
+                this.load.image('preloadBar', 'assets/loadbar.png');
             };
-            return Menu;
+            Boot.prototype.create = function () {
+                console.log('Boot state created');
+                //init game here
+                this.game.state.start('Preload');
+            };
+            Boot.prototype.update = function () { };
+            return Boot;
         })(Phaser.State);
-        States.Menu = Menu;
+        States.Boot = Boot;
     })(States = Spellz.States || (Spellz.States = {}));
 })(Spellz || (Spellz = {}));
-//# sourceMappingURL=Menu.js.map
+//# sourceMappingURL=Boot.js.map
