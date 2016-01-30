@@ -1,22 +1,27 @@
 {
-  "name": "ggj-ritual",
-  "version": "0.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/9byte/ggj-ritual.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/9byte/ggj-ritual/issues"
-  },
-  "homepage": "https://github.com/9byte/ggj-ritual#readme",
-  "dependencies": {
-    "phaser": "^2.4.4"
-  }
+    "name": "ggj-ritual",
+    "version": "0.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/9byte/ggj-ritual.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/9byte/ggj-ritual/issues"
+    },
+    "homepage": "https://github.com/9byte/ggj-ritual#readme",
+
+    "dependencies": {
+        "phaser": "^2.4.4"
+    },
+
+    "devDependencies": {
+        "http-server": "^0.8.5"
+    }
 }
