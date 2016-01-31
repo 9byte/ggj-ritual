@@ -18,6 +18,7 @@ module Spellz.States {
             this.load.image('spell3', 'assets/spell3.png');
             this.load.image('spell4', 'assets/spell4.png');
             this.load.image('player', 'assets/player.png');
+            this.load.image('enemy', 'assets/enemy.png');
 
         }
 

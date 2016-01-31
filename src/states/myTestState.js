@@ -9,6 +9,9 @@ Spellz.TestState = function () {
     this.playerItem = null;
     this.castShots = [];
     this.playerSpeed = 5;
+    this.lastEnemySpawn = Date.now();
+
+    this.enemy = null;
 
     this.spellStack = [];
 };
@@ -37,6 +40,12 @@ Spellz.TestState.prototype = {
         this.playerItem.anchor.setTo(0.5, 0.5);
     },
     update: function() {
+        this.testEnemyHit();
+        var date = Date.now();
+        if(this.enemy == null && (date - this.lastEnemySpawn > 15000)) {
+            this.spawnEnemy(Math.floor(Math.random() * (4 - 1)) + 1);
+            console.log("spawning enemy");
+        }
         var keyboard = game.input.keyboard;
         if (keyboard.isDown(Phaser.Keyboard.LEFT)||keyboard.isDown(Phaser.Keyboard.A))
         {
@@ -52,7 +61,7 @@ Spellz.TestState.prototype = {
         {
             this.playerItem.rotation = 0;
         }
-    for (var i = 0; i < this.castShots.length; i++) {
+        for (var i = 0; i < this.castShots.length; i++) {
             var shot = this.castShots[i];
             if(shot.sprite.y < 0) {
                 shot.sprite.destroy(true);
@@ -122,6 +131,37 @@ Spellz.TestState.prototype = {
 
     checkIsSpell4: function(items) {
         return items.length === 4 && items[0] === 0 && items[1] === 1 && items[2] === 2 && items[3] === 3;
+    },
+
+    spawnEnemy: function(spellType) {
+        var x = 100+Math.random()*600;
+        var y = 100;
+        this.enemy = {};
+        this.enemy.sprite = game.add.sprite(x, y, 'enemy');
+        this.enemy.spellType = spellType;
+        var spellSprite = game.add.sprite(50, 0, 'spell'+spellType);
+        this.enemy.sprite.addChild(spellSprite);
+        this.enemy.sprite.anchor.setTo(0.5, 0.5);
+        this.lastEnemySpawn = Date.now();
+    },
+    testEnemyHit: function() {
+        if(this.enemy != null) {
+            for (var i = 0; i < this.castShots.length; i++) {
+                var shot = this.castShots[i];
+                if(shot.spell !== this.enemy.spellType) {
+                    continue;
+                }
+                var deltaX = shot.sprite.x - this.enemy.sprite.x;
+                var deltaY = shot.sprite.y - this.enemy.sprite.y;
+                if(deltaY > -20 && deltaY < 20 && deltaX > -20 && deltaX < 20) {
+                    shot.sprite.destroy(true);
+                    this.castShots.splice(i, 1);
+                    this.enemy.sprite.destroy(true);
+                    this.enemy = null;
+                }
+            }
+        }
+
     }
 
 };
