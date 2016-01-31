@@ -7,6 +7,7 @@ Spellz.TestState = function () {
     this.spell_3 = null;
     this.cast = null;
     this.playerItem = null;
+    this.castShots = [];
     this.playerSpeed = 5;
 
     this.spellStack = [];
@@ -32,7 +33,7 @@ Spellz.TestState.prototype = {
         this.spell_2.onDown.add(function() {this.addSpell(2)}, this);
         this.spell_3.onDown.add(function() {this.addSpell(3)}, this);
         this.cast.onDown.add(function() {this.doCast()}, this);
-        this.playerItem = game.add.sprite(400, 500, "spell2");
+        this.playerItem = game.add.sprite(400, 500, "player");
         this.playerItem.anchor.setTo(0.5, 0.5);
     },
     update: function() {
@@ -51,6 +52,15 @@ Spellz.TestState.prototype = {
         {
             this.playerItem.rotation = 0;
         }
+    for (var i = 0; i < this.castShots.length; i++) {
+            var shot = this.castShots[i];
+            if(shot.sprite.y < 0) {
+                shot.sprite.destroy(true);
+                this.castShots.splice(i, 1);
+            } else {
+                shot.sprite.y -= 15;
+            }
+        }
     },
 
     addSpell: function(spell) {
@@ -59,15 +69,59 @@ Spellz.TestState.prototype = {
     },
 
     doCast: function() {
-        var isTestspell = this.checkIsTestSpell(this.spellStack);
-        this.spellStack = [];
-        if(isTestspell) {
-            console.log("YOU HAVE CAST. A WINNER IS YOU!");
+        var spellSprite;
+        if(this.checkIsTestSpell(this.spellStack)) {
+            console.log("Successfully casted spell1");
+            spellSprite = game.add.sprite(this.playerItem.x, this.playerItem.y, "spell1");
+            spellSprite.anchor.setTo(0.5, 0.5);
+            this.castShots.push({
+                spell: 1,
+                sprite: spellSprite
+            });
+        } else if(this.checkIsSpell2(this.spellStack)) {
+            console.log("Successfully casted spell2");
+            spellSprite = game.add.sprite(this.playerItem.x, this.playerItem.y, "spell2");
+            spellSprite.anchor.setTo(0.5, 0.5);
+            this.castShots.push({
+                spell: 2,
+                sprite: spellSprite
+            });
+        } else if(this.checkIsSpell3(this.spellStack)) {
+            console.log("Successfully casted spell3");
+            spellSprite = game.add.sprite(this.playerItem.x, this.playerItem.y, "spell3");
+            spellSprite.anchor.setTo(0.5, 0.5);
+            this.castShots.push({
+                spell: 3,
+                sprite: spellSprite
+            });
+        } else if(this.checkIsSpell4(this.spellStack)) {
+            console.log("Successfully casted spell4");
+            spellSprite = game.add.sprite(this.playerItem.x, this.playerItem.y, "spell4");
+            spellSprite.anchor.setTo(0.5, 0.5);
+            this.castShots.push({
+                spell: 4,
+                sprite: spellSprite
+            });
+        } else {
+            console.log("Cast failed. Ritual stack cleared.");
         }
+        this.spellStack = [];
     },
 
     checkIsTestSpell: function(items) {
-        return items[0] === 0 && items[1] === 1 && items[2];
+        return items.length === 3 && items[0] === 0 && items[1] === 1 && items[2] === 2;
+    },
+
+    checkIsSpell2: function(items) {
+        return items.length === 3 && items[0] === 2 && items[1] === 2 && items[2] === 3;
+    },
+
+    checkIsSpell3: function(items) {
+        return items.length === 4 && items[0] === 0 && items[1] === 3 && items[2] === 0 && items[3] === 3;
+    },
+
+    checkIsSpell4: function(items) {
+        return items.length === 4 && items[0] === 0 && items[1] === 1 && items[2] === 2 && items[3] === 3;
     }
 
 };

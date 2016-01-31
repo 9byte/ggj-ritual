@@ -24,6 +24,7 @@ var Spellz;
                 this.load.image('spell2', 'assets/spell2.png');
                 this.load.image('spell3', 'assets/spell3.png');
                 this.load.image('spell4', 'assets/spell4.png');
+                this.load.image('player', 'assets/player.png');
             };
             Preload.prototype.create = function () {
                 console.log('Preload state created');
