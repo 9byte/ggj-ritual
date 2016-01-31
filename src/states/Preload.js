@@ -18,6 +18,12 @@ var Spellz;
             Preload.prototype.preload = function () {
                 this.preloadBar = this.add.sprite(0, 100, 'preloadBar');
                 //load everything else...
+                this.load.image('playButton', 'assets/play.png');
+                this.load.image('logo', 'assets/logo.png');
+                this.load.image('spell1', 'assets/spell1.png');
+                this.load.image('spell2', 'assets/spell2.png');
+                this.load.image('spell3', 'assets/spell3.png');
+                this.load.image('spell4', 'assets/spell4.png');
             };
             Preload.prototype.create = function () {
                 console.log('Preload state created');

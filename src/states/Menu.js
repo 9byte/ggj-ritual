@@ -15,7 +15,17 @@ var Spellz;
             }
             Menu.prototype.preload = function () { };
             Menu.prototype.create = function () {
-                this.game.state.start("teststate");
+                var _this = this;
+                _super.prototype.create.call(this);
+                this.startButton = this.game.add.button(100, 100, 'playButton', function () { _this.game.state.start("teststate"); }, this);
+                this.startButton.events.onInputOver.add(function (btn) {
+                    btn.scale.x = 1.1;
+                    btn.scale.y = 1.1;
+                });
+                this.startButton.events.onInputOut.add(function (btn) {
+                    btn.scale.x = 1.0;
+                    btn.scale.y = 1.0;
+                });
             };
             Menu.prototype.update = function () {
                 console.log('menu update');

@@ -4,13 +4,19 @@ module Spellz.States {
 
     export class Preload extends Phaser.State {
 
-        private preloadBar = null;
-        private ready = false;
+        private preloadBar: Phaser.Sprite = null;
+        private ready: boolean = false;
 
         public preload() {
             this.preloadBar = this.add.sprite(0, 100, 'preloadBar');
 
             //load everything else...
+            this.load.image('playButton', 'assets/play.png');
+            this.load.image('logo', 'assets/logo.png');
+            this.load.image('spell1', 'assets/spell1.png');
+            this.load.image('spell2', 'assets/spell2.png');
+            this.load.image('spell3', 'assets/spell3.png');
+            this.load.image('spell4', 'assets/spell4.png');
 
         }
 
