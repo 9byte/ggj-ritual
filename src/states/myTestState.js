@@ -38,6 +38,18 @@ Spellz.TestState.prototype = {
         this.cast.onDown.add(function() {this.doCast()}, this);
         this.playerItem = game.add.sprite(400, 500, "player");
         this.playerItem.anchor.setTo(0.5, 0.5);
+
+        var textStyle = {font: '15px Arial', fill: '#ffffff', align: 'center'};
+        this.text0 = this.game.add.text(680, 500, 'Cast with: O', textStyle);
+        this.text1 = this.game.add.text(680, 520, 'Spell 1: J K L', textStyle);
+        this.text2 = this.game.add.text(680, 540, 'Spell 2: L L I', textStyle);
+        this.text3 = this.game.add.text(680, 560, 'Spell 3: J I J I', textStyle);
+        this.text4 = this.game.add.text(680, 580, 'Spell 4: J K L I', textStyle);
+        this.text0.anchor.setTo(0, 1);
+        this.text1.anchor.setTo(0, 1);
+        this.text2.anchor.setTo(0, 1);
+        this.text3.anchor.setTo(0, 1);
+        this.text4.anchor.setTo(0, 1);
     },
     update: function() {
         this.testEnemyHit();
