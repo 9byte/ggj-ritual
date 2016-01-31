@@ -19,10 +19,10 @@ Spellz.TestState.prototype = {
         this.spell_2 = this.game.input.keyboard.addKey(Phaser.Keyboard.L);
         this.spell_3 = this.game.input.keyboard.addKey(Phaser.Keyboard.I);
 
-        this.spell_0.onDown.add(this.addSpell("spell_0"), this);
-        this.spell_1.onDown.add(this.addSpell("spell_1"), this);
-        this.spell_2.onDown.add(this.addSpell("spell_2"), this);
-        this.spell_3.onDown.add(this.addSpell("spell_3"), this);
+        this.spell_0.onDown.add(function() {this.addSpell(0)}, this);
+        this.spell_1.onDown.add(function() {this.addSpell(1)}, this);
+        this.spell_2.onDown.add(function() {this.addSpell(2)}, this);
+        this.spell_3.onDown.add(function() {this.addSpell(3)}, this);
     },
     update: function() {
 
