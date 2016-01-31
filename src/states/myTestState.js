@@ -5,6 +5,8 @@ Spellz.TestState = function () {
     this.spell_1 = null;
     this.spell_2 = null;
     this.spell_3 = null;
+    this.playerItem = null;
+    this.playerSpeed = 5;
 };
 
 Spellz.TestState.prototype = {
@@ -14,6 +16,8 @@ Spellz.TestState.prototype = {
 
     },
     create: function() {
+        game.world.setBounds(0,0, 800, 600);
+
         this.spell_0 = this.game.input.keyboard.addKey(Phaser.Keyboard.J);
         this.spell_1 = this.game.input.keyboard.addKey(Phaser.Keyboard.K);
         this.spell_2 = this.game.input.keyboard.addKey(Phaser.Keyboard.L);
@@ -23,9 +27,25 @@ Spellz.TestState.prototype = {
         this.spell_1.onDown.add(function() {this.addSpell(1)}, this);
         this.spell_2.onDown.add(function() {this.addSpell(2)}, this);
         this.spell_3.onDown.add(function() {this.addSpell(3)}, this);
+        this.playerItem = game.add.sprite(400, 500, "spell2");
+        this.playerItem.anchor.setTo(0.5, 0.5);
     },
     update: function() {
-
+        var keyboard = game.input.keyboard;
+        if (keyboard.isDown(Phaser.Keyboard.LEFT)||keyboard.isDown(Phaser.Keyboard.A))
+        {
+            this.playerItem.x -= this.playerSpeed;
+            this.playerItem.angle = -15;
+        }
+        else if (keyboard.isDown(Phaser.Keyboard.RIGHT)||keyboard.isDown(Phaser.Keyboard.D))
+        {
+            this.playerItem.x += this.playerSpeed;
+            this.playerItem.angle = 15;
+        }
+        else
+        {
+            this.playerItem.rotation = 0;
+        }
     },
 
     addSpell: function(spell) {

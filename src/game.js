@@ -1,6 +1,6 @@
 'use strict';
 
-var game = new Phaser.Game(1280, 800, Phaser.AUTO, 'Spellz');
+var game = new Phaser.Game(800, 600, Phaser.AUTO, 'Spellz');
 
 var testState = new Spellz.TestState();
 
