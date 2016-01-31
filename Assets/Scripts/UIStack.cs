@@ -8,7 +8,7 @@ public class UIStack : MonoBehaviour
 
     private ExperimentalSpellHandler spellHandler;
     private Text textStack;
-
+    public int maxStackSize = 15;
 	void Start () 
     {
         //spellHandler = GameObject.Find("Capsule").GetComponent<ExperimentalSpellHandler>();
@@ -16,11 +16,17 @@ public class UIStack : MonoBehaviour
         textStack = gameObject.GetComponent<Text>();
 	}
 	
-    void Update () 
-    {
+    void Update ()
+	{
 
-        textStack.text = "";
-        foreach (ExperimentalSpellHandler.SpellPress spell in spellHandler.SpellStack)
+		textStack.text = "";
+		IList items = null;
+		if (spellHandler.SpellStack.Count < maxStackSize) {
+			items = spellHandler.SpellStack;
+		} else {
+			items = spellHandler.SpellStack.GetRange(spellHandler.SpellStack.Count-maxStackSize, maxStackSize);
+		}
+        foreach (ExperimentalSpellHandler.SpellPress spell in items)
         {
             textStack.text += spell.ToString() + "\n";
         }

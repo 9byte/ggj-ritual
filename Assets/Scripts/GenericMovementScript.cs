@@ -17,5 +17,10 @@ public class GenericMovementScript : MonoBehaviour {
         float vertical = Input.GetAxisRaw("Vertical");
         Vector3 move = new Vector3((horizontal*xAccel), (vertical*yAccel), 0);
      	transform.position += move * speed * Time.deltaTime;
+     	//check for screen boundaries
+     	var pos = Camera.main.WorldToViewportPoint(transform.position);
+     	pos.x = Mathf.Clamp(pos.x, 0.1f, 0.9f);
+		pos.y = Mathf.Clamp(pos.y, 0.1f, 0.9f);
+		transform.position = Camera.main.ViewportToWorldPoint(pos);
 	}
 }
